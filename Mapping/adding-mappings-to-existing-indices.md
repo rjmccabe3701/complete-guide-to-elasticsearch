@@ -13,6 +13,18 @@ PUT /product/_doc/_mapping
 }
 ```
 
+its really
+```
+PUT /product/_mapping
+{
+  "properties": {
+    "discount": {
+      "type": "double"
+    }
+  }
+}
+```
+
 ## Retrieving mapping
 
 ```

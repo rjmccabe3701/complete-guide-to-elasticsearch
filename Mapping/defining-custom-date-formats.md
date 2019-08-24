@@ -3,7 +3,7 @@
 ## Date mapping with `year` format
 
 ```
-PUT /product/_doc/_mapping
+PUT /product/_mapping
 {
   "properties": {
     "created": {
@@ -55,3 +55,9 @@ PUT /product/_doc/_mapping
   }
 }
 ```
+
+# THEN do this
+
+
+curl -u elastic:tH41yQpXaekgsixOXRricHJW  -H "Content-Type: application/json" -XPOST "https://245eb1314b86435f9ae6a56e9b5f02fd.us-central1.gcp.cloud.es.io:9243/product/_bulk?pretty" --data-binary "@products-bulk.json"
+
