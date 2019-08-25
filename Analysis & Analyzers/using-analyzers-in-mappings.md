@@ -3,7 +3,7 @@
 ## Using a custom analyzer in field mappings
 
 ```
-PUT /analyzers_test/_doc/_mapping
+PUT /analyzers_test/_mapping
 {
   "properties": {
     "description": {
@@ -31,7 +31,7 @@ POST /analyzers_test/_doc/1
 ## Testing the mapping
 
 ```
-GET /analyzers_test/_doc/_search
+GET /analyzers_test/_search
 {
   "query": {
     "term": {
@@ -44,7 +44,7 @@ GET /analyzers_test/_doc/_search
 ```
 
 ```
-GET /analyzers_test/_doc/_search
+GET /analyzers_test/_search
 {
   "query": {
     "term": {

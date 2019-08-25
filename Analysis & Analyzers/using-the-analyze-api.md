@@ -15,6 +15,7 @@ POST _analyze
 ```
 POST _analyze
 {
+  "tokenizer": "standard",
   "filter": [ "lowercase" ],
   "text": "I'm in the mood for drinking semi-dry red wine!"
 }
