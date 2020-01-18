@@ -1,0 +1,17 @@
+CURL='curl -u elastic:tH42yQpXaekgsixOXRricHJW -H "Content-Type: application/json"'
+LOC=https://245eb1314b86435f9ae6a56e9b5f02fd.us-central1.gcp.cloud.es.io:9243
+#$CURL -XPOST "$LOC/product/default/_bulk?pretty" --data-binary "@products-bulk.json"
+
+
+elastic() {
+   TYPE=$1
+   QUERY=$2
+   if [ $# -ge 3 ]; then
+      DATA="-d$DATA"
+   else
+      DATA=''
+   fi
+   $CURL -XPOST "$LOC/$QUERY" $DATA
+}
+
+elastic GET /_cat/health?v

@@ -56,3 +56,87 @@ PUT /order
 ```
 curl -H "Content-Type: application/json" -XPOST 'http://localhost:9200/order/_doc/_bulk?pretty' --data-binary "@orders-bulk.json"
 ```
+
+
+---
+GET order/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "sort": [
+      {
+         "lines.quantity": {
+            "order" "desc",
+            "mode": "avg"
+         }
+      }
+   ]
+}
+
+GET /order/_search?size=2
+{
+  "_source": true,
+  "query": {
+     "bool" : {
+        "filter" : {
+           "script" : {
+              "script" : {
+                 "source": "doc["lines"].length > 1",
+                 "lang": "painless"
+              }
+           }
+        }
+     }
+  }
+}
+
+GET /order/_search?size=2
+{
+  "_source": true,
+  "query": {
+     "bool" : {
+        "filter" : {
+           "script" : {
+              "script" : {
+                 "source": "doc['lines'].length > 1",
+                 "lang": "painless"
+              }
+           }
+        }
+     }
+  },
+  "sort": [
+    {
+      "lines.amount": {
+          "order": "desc",
+          "mode": "max"
+      }
+    }
+    ]
+
+}
+
+
+GET /order/_search
+{
+  "_source": true,
+  "query": {
+    "nested": {
+       "path": "lines",
+       "query": {
+          "bool": {
+             "must" : [
+             {
+                "exists": {
+                   "field": ""
+                }
+             }
+             ]
+          }
+       }
+    }
+  }
+}
+
+

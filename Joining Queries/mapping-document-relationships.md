@@ -3,17 +3,15 @@
 ```
 PUT /department
 {
-  "mappings": {
-    "_doc": {
+   "mappings": {
       "properties": {
-        "join_field": { 
-          "type": "join",
-          "relations": {
-            "department": "employee"
-          }
-        }
+         "join_field": {
+            "type": "join",
+            "relations": {
+               "department": "employee"
+            }
+         }
       }
-    }
-  }
+   }
 }
 ```

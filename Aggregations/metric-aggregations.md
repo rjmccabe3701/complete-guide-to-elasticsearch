@@ -78,3 +78,28 @@ GET /order/_doc/_search
   }
 }
 ```
+
+                "combine_scriptss : "double profit = 0; for (t in state.transactions) { profit += t } return profit",
+
+GET /order/_doc/_search
+{
+   "query" : {
+      "match_all" : {}
+   },
+   "aggs": {
+      "min_lines": {
+         "nested": { "path" : "lines"},
+         "aggs": {
+            "inner_min_lines":{
+               "scripted_metric": {
+                  "init_script" : "state.transactions = []",
+                  "map_script" : "state.transactions.add(doc.lines.count)",
+                  "combine_script" : "return state.transactions",
+                  "reduce_script" : "double min = 1000; for (a in states.transactions) {  if(min > a) { min = a } } return a"
+               }
+            }
+         }
+      }
+   }
+}
+

@@ -9,7 +9,7 @@ GET /order/_doc/_search
   "aggs": {
     "status_terms": {
       "terms": {
-        "field": "status.keyword"
+        "field": "status"
       }
     }
   }
@@ -25,7 +25,7 @@ GET /order/_doc/_search
   "aggs": {
     "status_terms": {
       "terms": {
-        "field": "status.keyword",
+        "field": "status",
         "size": 20
       }
     }
@@ -42,7 +42,7 @@ GET /order/_doc/_search
   "aggs": {
     "status_terms": {
       "terms": {
-        "field": "status.keyword",
+        "field": "status",
         "size": 20,
         "missing": "N/A"
       }
@@ -60,7 +60,7 @@ GET /order/_doc/_search
   "aggs": {
     "status_terms": {
       "terms": {
-        "field": "status.keyword",
+        "field": "status",
         "size": 20,
         "missing": "N/A",
         "min_doc_count": 0
@@ -79,12 +79,12 @@ GET /order/_doc/_search
   "aggs": {
     "status_terms": {
       "terms": {
-        "field": "status.keyword",
+        "field": "status",
         "size": 20,
         "missing": "N/A",
         "min_doc_count": 0,
         "order": {
-          "_term": "asc"
+          "_key": "asc"
         }
       }
     }

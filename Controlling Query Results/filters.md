@@ -14,15 +14,14 @@ GET /recipe/_doc/_search
           }
         }
       ],
-      "filter": [
-        {
+      "filter": {
           "range": {
             "preparation_time_minutes": {
               "lte": 15
             }
           }
         }
-      ]
+
     }
   }
 }

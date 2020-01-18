@@ -11,9 +11,9 @@ PUT /department/_doc/1
 ```
 
 ```
-PUT /department/_doc/2
+put /department/_doc/2
 {
-  "name": "Marketing",
+  "name": "marketing",
   "join_field": "department"
 }
 ```

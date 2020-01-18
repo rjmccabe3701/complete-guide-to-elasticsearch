@@ -7,7 +7,9 @@ GET /department/_search
   "query": {
     "nested": {
       "path": "employees",
-      "inner_hits": {},
+      "inner_hits": {
+         "explain": true
+         },
       "query": {
         "bool": {
           "must": [
@@ -15,6 +17,13 @@ GET /department/_search
               "match": {
                 "employees.position": "intern"
               }
+            },
+            {
+               "range": {
+                  "employees.age": {
+                     "lte": 22
+                  }
+               }
             },
             {
               "term": {

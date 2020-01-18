@@ -6,9 +6,8 @@
 PUT /company
 {
   "mappings": {
-    "_doc": {
       "properties": {
-        "join_field": { 
+        "join_field": {
           "type": "join",
           "relations": {
             "company": ["department", "supplier"],
@@ -16,7 +15,6 @@ PUT /company
           }
         }
       }
-    }
   }
 }
 ```

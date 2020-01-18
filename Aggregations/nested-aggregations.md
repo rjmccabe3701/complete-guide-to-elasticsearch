@@ -19,8 +19,7 @@ GET /order/_doc/_search
         }
       }
     }
-  }
-}
+  } }
 ```
 
 ## Narrowing down the aggregation context
@@ -52,3 +51,39 @@ GET /order/_doc/_search
   }
 }
 ```
+
+
+
+---- double nested
+
+GET /order/_doc/_search
+{
+  "size": 0,
+  "aggs": {
+    "status_terms": {
+      "terms": {
+        "field": "status"
+      },
+      "aggs": {
+        "amount_hist": {
+           "histogram" : {
+                "field" : "salesman.id",
+                "interval" : 100
+            },
+            "aggs": {
+              "status_stats": {
+                "stats": {
+                  "field": "total_amount"
+                }
+              },
+              "id_stats": {
+                "stats": {
+                  "field": "salesman.id"
+                }
+              }
+          }
+        }
+      }
+    }
+  }
+}
